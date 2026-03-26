@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import "./productDetails.css";
+
+
 
 function ProductDetails({ addToCart }) {
   const { id } = useParams();

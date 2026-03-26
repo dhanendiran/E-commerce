@@ -6,7 +6,7 @@ function Order() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-localStorage.removeItem("token")
+
     if (!token) {
       alert("Please login first");
       return;
