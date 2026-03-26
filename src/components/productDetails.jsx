@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import "./ProductDetails.css";
+import "./productDetails.css";
 
 function ProductDetails({ addToCart }) {
   const { id } = useParams();
@@ -13,7 +13,7 @@ function ProductDetails({ addToCart }) {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const res = await fetch(`http://localhost:5011/products/${id}`);
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/products/${id}`);
         const data = await res.json();
 
         if (!data || data.message) {

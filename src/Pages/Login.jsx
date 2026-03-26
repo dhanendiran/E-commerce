@@ -16,7 +16,7 @@ function Login({ user, setuser }) {
       return;
     }
 
-    fetch("http://localhost:5011/signup", {
+    fetch(`${import.meta.env.VITE_API_URL}/orders`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -48,7 +48,7 @@ function Login({ user, setuser }) {
       return;
     }
 
-    fetch("http://localhost:5011/login", {
+    fetch(`${import.meta.env.VITE_API_URL}/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

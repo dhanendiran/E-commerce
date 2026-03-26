@@ -10,7 +10,7 @@ function Products({addToCart,searchquery,category,products,setProducts}) {
 
     async function fetchProducts() {
       try {
-        const response = await fetch("http://localhost:5011/products")
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/products`)
         const data = await response.json()
         setProducts(data)
         console.log(data)

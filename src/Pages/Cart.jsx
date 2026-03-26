@@ -26,7 +26,7 @@ function Cart({ cart, setCart }) {
 
  const token = localStorage.getItem("token");
 
-fetch("http://localhost:5011/orders", {
+fetch(`${import.meta.env.VITE_API_URL}/orders`, {
   method: "POST",
   headers: {
     "Content-Type": "application/json",

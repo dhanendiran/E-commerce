@@ -6,15 +6,15 @@ function Order() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-
+localStorage.removeItem("token")
     if (!token) {
       alert("Please login first");
       return;
     }
 
-    fetch("http://localhost:5011/orders", {
+    fetch(`${import.meta.env.VITE_API_URL}/orders`, {
       headers: {
-        "Authorization": `Bearer ${token}`
+        Authorization: `Bearer ${token}`
       }
     })
       .then(res => res.json())

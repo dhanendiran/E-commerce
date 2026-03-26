@@ -1,11 +1,14 @@
 const express = require('express');
 const cors = require('cors');
+require("dotenv").config();
 const bcrypt = require('bcrypt');
 const jwt=require('jsonwebtoken')
 const mongoose = require('mongoose');
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: "*"
+}));
 app.use(express.json());
 let products = [];
 
@@ -21,7 +24,7 @@ const loadProducts = async () => {
 };
 
 loadProducts();
-mongoose.connect("mongodb://127.0.0.1:27017/ecommerce")
+mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB connected"))
   .catch(err => console.log(err));
 
@@ -51,7 +54,7 @@ const auth = (req, res, next) => {
   const token = authHeader.split(" ")[1];
 
   try {
-    const decoded = jwt.verify(token, "secretkey");
+    const decoded = jwt.verify(token, process.env.JWT_SECRET)
     req.userId = decoded.id;
     next();
   } catch {
@@ -138,12 +141,7 @@ app.post('/login', async (req, res) => {
       return res.status(400).json({ message: "Invalid password" });
     }
 
-    const token = jwt.sign(
-      { id: user._id },
-      "secretkey",
-      { expiresIn: "1d" }
-    );
-
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1d" })
     console.log("TOKEN GENERATED:", token);
 
     res.json({
@@ -182,7 +180,7 @@ app.get('/orders', auth, async (req, res) => {
 });
 
 
-const PORT = 5011;
+const PORT = process.env.PORT || 5011;
 
 app.listen(PORT, () => {
   console.log(`Server running on ${PORT}`);
