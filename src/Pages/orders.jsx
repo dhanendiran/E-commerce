@@ -12,7 +12,7 @@ function Order() {
       return;
     }
 
-    fetch(`${import.meta.env.VITE_API_URL}/orders`, {
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/orders`, {
       headers: {
         Authorization: `Bearer ${token}`
       }

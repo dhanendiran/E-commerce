@@ -16,7 +16,7 @@ function Login({ user, setuser }) {
       return;
     }
 
-    fetch(`${import.meta.env.VITE_API_URL}/orders`, {
+    fetch(`${import.meta.env.VITE_API_URL}/signup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
