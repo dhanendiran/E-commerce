@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const cors = require('cors');
 require("dotenv").config();
 const bcrypt = require('bcrypt');
@@ -180,6 +181,13 @@ app.get('/orders', auth, async (req, res) => {
 
 
 const PORT = process.env.PORT || 5011;
+// Serve frontend static files
+app.use(express.static(path.join(__dirname, "../dist")));
+
+// Fallback route for SPA routing
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../dist/index.html"));
+});
 
 app.listen(PORT, () => {
   console.log(`Server running on ${PORT}`);
