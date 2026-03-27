@@ -180,15 +180,15 @@ app.get('/orders', auth, async (req, res) => {
 });
 
 
-const PORT = process.env.PORT || 5011;
-// Serve frontend static files
+
+
 app.use(express.static(path.join(__dirname, "../dist")));
 
-// Fallback route for SPA routing
+
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../dist/index.html"));
 });
-
+const PORT = process.env.PORT || 5011;
 app.listen(PORT, () => {
   console.log(`Server running on ${PORT}`);
 });
