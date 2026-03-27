@@ -10,12 +10,11 @@ const app = express();
 app.use(cors({
   origin: [
     "http://localhost:5173",
-    
+    "https://e-commerce-cu08-git-main-dhanendirans-projects.vercel.app"
   ],
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
-
 
 app.use(express.json());
 let products = [];
